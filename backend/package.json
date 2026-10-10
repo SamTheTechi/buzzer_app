@@ -1,0 +1,24 @@
+{
+  "name": "buzzer",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "build": "echo \"No build step required for plain Node.js backend\" && exit 0"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.6",
+    "express": "^5.2.1",
+    "helmet": "^8.3.0",
+    "ioredis": "^6.0.0",
+    "nanoid": "^6.0.2",
+    "nodemon": "^3.1.14",
+    "socket.io": "^4.8.4"
+  }
+}
