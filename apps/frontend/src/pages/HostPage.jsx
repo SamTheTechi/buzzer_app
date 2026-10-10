@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { createSocket, type RoomState } from '../lib/socket'
+import { createSocket } from '../lib/socket'
 
 export default function HostPage() {
-  const [room, setRoom] = useState<RoomState | null>(null)
-  const [error, setError] = useState<string | null>(null)
+  const [room, setRoom] = useState(null)
+  const [error, setError] = useState(null)
   const [connected, setConnected] = useState(false)
-  const socketRef = useRef<ReturnType<typeof createSocket> | null>(null)
+  const socketRef = useRef(null)
 
   useEffect(() => {
     const socket = createSocket()
@@ -35,11 +35,11 @@ export default function HostPage() {
       if (roomCreated) setError('The host connection closed and this room has ended.')
     }
 
-    function handleRoomState(state: RoomState) {
+    function handleRoomState(state) {
       setRoom(state)
     }
 
-    function handleRoomClosed(reason: string) {
+    function handleRoomClosed(reason) {
       setError(reason)
     }
 

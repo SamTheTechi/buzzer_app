@@ -1,16 +1,16 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, useParams, useSearchParams } from 'react-router-dom'
-import { createSocket, type RoomState } from '../lib/socket'
+import { createSocket } from '../lib/socket'
 
 export default function PlayerPage() {
   const { roomCode } = useParams()
   const [searchParams] = useSearchParams()
   const name = searchParams.get('name')?.trim() ?? ''
-  const [room, setRoom] = useState<RoomState | null>(null)
-  const [playerId, setPlayerId] = useState<string | null>(null)
+  const [room, setRoom] = useState(null)
+  const [playerId, setPlayerId] = useState(null)
   const [connected, setConnected] = useState(false)
-  const [error, setError] = useState<string | null>(null)
-  const socketRef = useRef<ReturnType<typeof createSocket> | null>(null)
+  const [error, setError] = useState(null)
+  const socketRef = useRef(null)
 
   useEffect(() => {
     const code = roomCode ?? ''
@@ -38,11 +38,11 @@ export default function PlayerPage() {
       setConnected(false)
     }
 
-    function handleRoomState(state: RoomState) {
+    function handleRoomState(state) {
       setRoom(state)
     }
 
-    function handleRoomClosed(reason: string) {
+    function handleRoomClosed(reason) {
       setError(reason)
     }
 

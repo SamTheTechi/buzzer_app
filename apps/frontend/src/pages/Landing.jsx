@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import type { FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { normalizeRoomCode } from '../lib/room'
 
@@ -7,13 +6,13 @@ export default function Landing() {
   const navigate = useNavigate()
   const [joinCode, setJoinCode] = useState('')
   const [joinName, setJoinName] = useState('')
-  const [error, setError] = useState<string | null>(null)
+  const [error, setError] = useState(null)
 
   function handleCreate() {
     navigate('/host')
   }
 
-  function handleJoin(e: FormEvent) {
+  function handleJoin(e) {
     e.preventDefault()
     const code = normalizeRoomCode(joinCode)
     if (!code) {
